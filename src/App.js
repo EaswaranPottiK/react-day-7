@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import Filter from './Filter';
+import OneCard from './OneCard';
+import Data from './Data'
 
 function App() {
+
+  function handleSetStar(rating){
+      if(rating==='4'){
+          return('⭐⭐⭐⭐')
+      }
+      else{
+        return('⭐⭐⭐⭐⭐')
+      }
+      
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Filter/>
+      
+      <div style={{display:'flex',justifyContent:'space-around',flexWrap:'wrap',paddingLeft:'1%',paddingRight:'1%'}}>
+      {
+        Data.map((item,count) => (
+           
+            <OneCard name={item.name} rating={handleSetStar(item.rating)} postcode={item.postcode} type={item.type} address={item.address}/>
+          ))
+      }
+      </div>
+      
     </div>
   );
 }
